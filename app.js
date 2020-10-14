@@ -1,6 +1,3 @@
-/**
- * Example store structure
- */
 const store = {
   // 5 or more questions are required
   questions: [
@@ -31,7 +28,7 @@ const store = {
     }
   ],
   quizStarted: false,
-  questionNumber: 0,
+  currentQuestion: 0,
   score: 0,
 };
 
@@ -67,7 +64,7 @@ function generateNumberAndScore() {
   return `
     <ul class="question-and-score">
       <li id="question-number">
-        Question Number: ${store.questionNumber + 1} of ${store.questions.length}
+        Question Number: ${store.currentQuestion + 1} of ${store.questions.length}
       </li>
       <li id="score">
         Score: ${store.score} out of ${store.questions.length}
@@ -77,7 +74,7 @@ function generateNumberAndScore() {
 }
 
 function generateAnswers() {
-  const answersArr = store.questions[store.questionNumber].answers
+  const answersArr = store.questions[store.currentQuestion].answers
   let answersHtml = '';
   let i = 0;
   
@@ -182,17 +179,17 @@ function handleBeginClick() {
 }
 
 function handleNextQuestionClick() {
-  $('body').on('click', '#next-question-btn', (event) => {
+  $('main').on('click', '#next-question-btn', (event) => {
     render();
   })
 }
 
 function handleQuestionSubmit() {
-  $('body').on('submit', '#question-form', function(event) {
+  $('main').on('submit', '#question-form', function(event) {
     event.preventDefault();
     const currentQuestion = store.questions[store.currentQuestion];
     let selectedChoice = $('input[name=choices]:checked').val();
-    let choiceContainerId = `#choice-container-${currentQuestion.answers.findIndex(i => i === selectedChoice)}`;
+    let choiceContainerId = `#choices-container-${currentQuestion.answers.findIndex(i => i === selectedChoice)}`;
     if (selectedChoice === currentQuestion.correctAnswer) {
       store.score++;
       $(choiceContainerId).append(generateFeedback('correct'));
@@ -216,7 +213,7 @@ function restartQuiz() {
 }
 
 function handleResartClick() {
-  $('body').on("click", '#restart', () => {
+  $('main').on("click", '#restart', () => {
     restartQuiz();
     render();
   });
