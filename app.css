@@ -31,6 +31,10 @@ main {
   justify-content: center;
 }
 
+.hide-button {
+  display: none;
+}
+
 #begin, #submit-answer-btn, #next-question-btn, #restart {
   display: block;
   text-align: center;
@@ -49,3 +53,6 @@ main {
 .right-answer, .wrong-answer {
   color: #b22222;
 }
+
+
+
