@@ -104,7 +104,9 @@ function generateQuestion() {
         </div>
       </div>
       <button type='submit' id='submit-answer-btn' tabindex='5'>Submit</button>
-      <button type='button' id='next-question-btn' tabindex='6'>Next Question</button>
+      <div class='hide-button'>
+        <button type='button' id='next-question-btn' tabindex='6'>Next Question</button>
+      </div>
     </fieldset>
   </form>
   `
@@ -198,11 +200,11 @@ function handleQuestionSubmit() {
       $(choiceContainerId).append(generateFeedback('incorrect'));
     }
     store.currentQuestion++;
-    $('submit-answer-btn').hide();
+    $('#submit-answer-btn').hide();
     $('input[type=radio]').each(() => {
       $('input[type=radio]').attr('disabled', true);
     });
-    $('next-question-btn').show();
+    $('.hide-button').show();
   });
 }
 
