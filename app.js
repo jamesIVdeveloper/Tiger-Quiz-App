@@ -1,5 +1,4 @@
 const store = {
-  // 5 or more questions are required
   questions: [
     {
       question: 'How many Major Championships has Tiger Woods won?',
