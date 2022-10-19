@@ -63,7 +63,7 @@ function generateAnswers() {
 
   answersArr.forEach((answer) => {
     answersHtml += `
-      <div id="choices-container-${i}">
+      <div class="answer-choice" id="choices-container-${i}">
         <input type="radio" name="choices" id="choices${
           i + 1
         }" value="${answer}" tabindex="${i + 1}" required>
